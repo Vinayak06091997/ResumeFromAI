@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinayak Nimbaragi — Full-Stack Software Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #050505; color: #fff; margin: 0; }
+    ::selection { background: rgba(249,115,22,0.3); color: #fed7aa; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+    @keyframes slideUpFade {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleReveal {
+      from { opacity: 0; transform: scale(1.08); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
+    @keyframes slow-zoom {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(249,115,22,0.3); }
+      50% { box-shadow: 0 0 20px rgba(249,115,22,0.6); }
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes lineGrow {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .animate-slide-up { animation: slideUpFade 1s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
+    .animate-scale-reveal { animation: scaleReveal 1.5s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-breathe { animation: breathe 8s ease-in-out infinite; }
+    .animate-slow-zoom { animation: slow-zoom 20s ease-in-out infinite; }
+    .animate-scroll { animation: scroll 40s linear infinite; }
+    .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+    .delay-600 { animation-delay: 600ms; }
+    .delay-700 { animation-delay: 700ms; }
+    .delay-800 { animation-delay: 800ms; }
+
+    .gradient-line {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+    }
+
+    .card-hover {
+      transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.15);
+      box-shadow: 0 0 40px -10px rgba(249,115,22,0.15);
+    }
+
+    .skill-tag {
+      transition: all 0.3s ease;
+    }
+    .skill-tag:hover {
+      background: rgba(249,115,22,0.15);
+      border-color: rgba(249,115,22,0.4);
+      color: #fb923c;
+      transform: translateY(-2px);
+    }
+
+    .timeline-line {
+      background: linear-gradient(to bottom, rgba(249,115,22,0.6), rgba(249,115,22,0.1), transparent);
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
+      transform: skewX(-20deg);
+      transition: none;
+    }
+    .btn-primary:hover::after {
+      animation: shine 0.75s;
+    }
+
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-gradient-orange {
+      background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-glow {
+      background: radial-gradient(ellipse 600px 400px at 50% 40%, rgba(249,115,22,0.08), transparent 70%);
+    }
+
+    .stat-card {
+      position: relative;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(249,115,22,0.3), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .experience-card {
+      position: relative;
+    }
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(249,115,22,0.5), rgba(249,115,22,0.05));
+    }
+    .experience-card .dot {
+      position: absolute;
+      left: -5px;
+      top: 28px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #f97316;
+      box-shadow: 0 0 12px rgba(249,115,22,0.6);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Background Glow Orbs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full bg-orange-500/5 blur-[120px] animate-breathe"></div>
+    <div class="absolute bottom-[-200px] right-[-100px] w-[500px] h-[500px] rounded-full bg-orange-500/4 blur-[100px] animate-breathe" style="animation-delay: 4s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-orange-500/3 blur-[150px] animate-breathe" style="animation-delay: 2s;"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-black/60 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-white font-semibold text-sm group-hover:scale-110 transition-transform duration-300">
+          VN
+        </div>
+        <span class="text-white font-medium text-sm tracking-tight hidden sm:block">Vinayak<span class="text-orange-500">.</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm font-medium text-stone-400 hover:text-white transition-colors duration-300">About</a>
+        <a href="#experience" class="text-sm font-medium text-stone-400 hover:text-white transition-colors duration-300">Experience</a>
+        <a href="#skills" class="text-sm font-medium text-stone-400 hover:text-white transition-colors duration-300">Skills</a>
+        <a href="#projects" class="text-sm font-medium text-stone-400 hover:text-white transition-colors duration-300">Projects</a>
+        <a href="#education" class="text-sm font-medium text-stone-400 hover:text-white transition-colors duration-300">Education</a>
+        <a href="#contact" class="text-sm font-medium text-stone-400 hover:text-white transition-colors duration-300">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://www.linkedin.com/in/vinayakakvise" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+          <iconify-icon icon="mdi:linkedin" class="text-stone-400 text-lg"></iconify-icon>
+        </a>
+        <a href="mailto:vinayakakvise@gmail.com" class="hidden sm:flex btn-primary items-center gap-2 bg-white text-black text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-stone-200 transition-colors duration-300">
+          <iconify-icon icon="mdi:email-outline" class="text-sm"></iconify-icon>
+          Hire Me
+        </a>
+        <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all duration-300">
+          <iconify-icon icon="mdi:menu" class="text-white text-lg" id="menuIcon"></iconify-icon>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-black/80 nav-blur">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="#about" class="text-sm font-medium text-stone-400 hover:text-white transition-colors py-2 mobile-link">About</a>
+        <a href="#experience" class="text-sm font-medium text-stone-400 hover:text-white transition-colors py-2 mobile-link">Experience</a>
+        <a href="#skills" class="text-sm font-medium text-stone-400 hover:text-white transition-colors py-2 mobile-link">Skills</a>
+        <a href="#projects" class="text-sm font-medium text-stone-400 hover:text-white transition-colors py-2 mobile-link">Projects</a>
+        <a href="#education" class="text-sm font-medium text-stone-400 hover:text-white transition-colors py-2 mobile-link">Education</a>
+        <a href="#contact" class="text-sm font-medium text-stone-400 hover:text-white transition-colors py-2 mobile-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div class="hero-glow absolute inset-0 z-0"></div>
+
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 z-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <!-- Status Badge -->
+      <div class="animate-slide-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
+        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        <span class="text-xs font-medium text-stone-400 tracking-wide">Available for Opportunities</span>
+      </div>
+
+      <!-- Name -->
+      <h1 class="animate-slide-up delay-100 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] mb-6">
+        <span class="text-gradient">Vinayak</span><br />
+        <span class="text-gradient-orange">Nimbaragi</span>
+      </h1>
+
+      <!-- Role -->
+      <div class="animate-slide-up delay-200 flex flex-wrap items-center justify-center gap-3 mb-8">
+        <span class="text-sm md:text-base font-medium text-stone-400">Full-Stack Software Engineer</span>
+        <span class="hidden sm:block w-1 h-1 rounded-full bg-stone-600"></span>
+        <span class="text-sm md:text-base font-medium text-stone-500">Java · Spring Boot · React.js</span>
+      </div>
+
+      <!-- Description -->
+      <p class="animate-slide-up delay-300 text-base md:text-lg font-light text-stone-500 max-w-2xl mx-auto leading-relaxed mb-10">
+        4+ years building scalable microservices, distributed systems, and high-performance web applications. Specializing in cloud-native backends with AWS, Kafka, and event-driven architectures.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="animate-slide-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#contact" class="btn-primary group flex items-center gap-2.5 bg-white text-black text-sm font-semibold px-8 py-3.5 rounded-full hover:bg-stone-200 transition-colors duration-300">
+          Get in Touch
+          <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform duration-300"></iconify-icon>
+        </a>
+        <a href="#experience" class="group flex items-center gap-2.5 bg-white/5 border border-white/10 text-white text-sm font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+          <iconify-icon icon="mdi:briefcase-outline" class="text-base text-orange-500"></iconify-icon>
+          View Experience
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="animate-slide-up delay-500 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <div class="stat-card bg-white/[0.03] rounded-2xl p-5 text-center">
+          <div class="text-2xl md:text-3xl font-semibold text-white mb-1">4+</div>
+          <div class="text-xs font-medium text-stone-500 uppercase tracking-wider">Years Exp</div>
+        </div>
+        <div class="stat-card bg-white/[0.03] rounded-2xl p-5 text-center">
+          <div class="text-2xl md:text-3xl font-semibold text-white mb-1">25%</div>
+          <div class="text-xs font-medium text-stone-500 uppercase tracking-wider">API Perf Gain</div>
+        </div>
+        <div class="stat-card bg-white/[0.03] rounded-2xl p-5 text-center">
+          <div class="text-2xl md:text-3xl font-semibold text-white mb-1">400ms</div>
+          <div class="text-xs font-medium text-stone-500 uppercase tracking-wider">Peak Response</div>
+        </div>
+        <div class="stat-card bg-white/[0.03] rounded-2xl p-5 text-center">
+          <div class="text-2xl md:text-3xl font-semibold text-white mb-1">80%</div>
+          <div class="text-xs font-medium text-stone-500 uppercase tracking-wider">Test Coverage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-slide-up delay-700 flex flex-col items-center gap-2">
+      <span class="text-[10px] font-medium text-stone-600 uppercase tracking-widest">Scroll</span>
+      <div class="w-5 h-8 rounded-full border border-white/10 flex items-start justify-center p-1.5">
+        <div class="w-1 h-2 rounded-full bg-orange-500 animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- Tech Marquee -->
+  <section class="py-12 overflow-hidden">
+    <div class="marquee-mask">
+      <div class="flex animate-scroll whitespace-nowrap">
+        <div class="flex items-center gap-12 px-6">
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:language-java" class="text-orange-500/60 text-lg"></iconify-icon> Java 8 / 21</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:leaf" class="text-orange-500/60 text-lg"></iconify-icon> Spring Boot</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:react" class="text-orange-500/60 text-lg"></iconify-icon> React.js</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:language-typescript" class="text-orange-500/60 text-lg"></iconify-icon> TypeScript</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:aws" class="text-orange-500/60 text-lg"></iconify-icon> AWS</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:message-text-outline" class="text-orange-500/60 text-lg"></iconify-icon> Apache Kafka</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:docker" class="text-orange-500/60 text-lg"></iconify-icon> Docker</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:kubernetes" class="text-orange-500/60 text-lg"></iconify-icon> Kubernetes</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:database" class="text-orange-500/60 text-lg"></iconify-icon> PostgreSQL</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:api" class="text-orange-500/60 text-lg"></iconify-icon> REST APIs</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:terraform" class="text-orange-500/60 text-lg"></iconify-icon> Terraform</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:rabbit" class="text-orange-500/60 text-lg"></iconify-icon> RabbitMQ</span>
+        </div>
+        <div class="flex items-center gap-12 px-6">
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:language-java" class="text-orange-500/60 text-lg"></iconify-icon> Java 8 / 21</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:leaf" class="text-orange-500/60 text-lg"></iconify-icon> Spring Boot</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:react" class="text-orange-500/60 text-lg"></iconify-icon> React.js</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:language-typescript" class="text-orange-500/60 text-lg"></iconify-icon> TypeScript</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:aws" class="text-orange-500/60 text-lg"></iconify-icon> AWS</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:message-text-outline" class="text-orange-500/60 text-lg"></iconify-icon> Apache Kafka</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:docker" class="text-orange-500/60 text-lg"></iconify-icon> Docker</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:kubernetes" class="text-orange-500/60 text-lg"></iconify-icon> Kubernetes</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:database" class="text-orange-500/60 text-lg"></iconify-icon> PostgreSQL</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:api" class="text-orange-500/60 text-lg"></iconify-icon> REST APIs</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:terraform" class="text-orange-500/60 text-lg"></iconify-icon> Terraform</span>
+          <span class="text-sm font-medium text-stone-600 flex items-center gap-2"><iconify-icon icon="mdi:rabbit" class="text-orange-500/60 text-lg"></iconify-icon> RabbitMQ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="scroll-reveal grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: Image/Visual -->
+        <div class="relative">
+          <div class="relative rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto lg:mx-0">
+            <img src="https://picsum.photos/seed/vinayak-dev-portrait/600/750.jpg" alt="Vinayak Nimbaragi" class="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-1000" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-xs font-medium text-stone-400">Based in Bengaluru, India</span>
+              </div>
+              <div class="text-lg font-medium text-white">Building the future, one API at a time.</div>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -top-4 -right-4 lg:right-8 bg-black/80 border border-white/10 rounded-2xl p-4 animate-float nav-blur">
+            <div class="flex items-center gap-2 mb-1">
+              <iconify-icon icon="mdi:shield-check" class="text-orange-500 text-lg"></iconify-icon>
+              <span class="text-xs font-semibold text-white">AZ-900 Certified</span>
+            </div>
+            <span class="text-[10px] text-stone-500">Microsoft Azure Fundamentals</span>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-[2px] bg-orange-500"></div>
+            <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest">About Me</span>
+          </div>
+          <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-gradient mb-6">
+            Engineering scalable<br />software systems
+          </h2>
+          <p class="text-base font-light text-stone-400 leading-relaxed mb-6">
+            I'm a Full-Stack Software Engineer with 4+ years of experience designing and developing scalable microservices, distributed systems, and high-performance web applications using Java, Spring Boot, React.js, and AWS.
+          </p>
+          <p class="text-base font-light text-stone-400 leading-relaxed mb-8">
+            My expertise lies in building RESTful APIs, event-driven architectures, and cloud-native applications with a strong focus on performance optimisation, system reliability, and clean software design. I thrive in Agile, CI/CD-driven environments and have a proven track record of delivering business-critical solutions.
+          </p>
+
+          <!-- Highlights -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <iconify-icon icon="mdi:server-network" class="text-orange-500 text-sm"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white mb-0.5">Microservices</div>
+                <div class="text-xs text-stone-500">Distributed systems design</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <iconify-icon icon="mdi:cloud-outline" class="text-orange-500 text-sm"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white mb-0.5">Cloud Native</div>
+                <div class="text-xs text-stone-500">AWS, Docker, K8s</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <iconify-icon icon="mdi:lightning-bolt" class="text-orange-500 text-sm"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white mb-0.5">Event Driven</div>
+                <div class="text-xs text-stone-500">Kafka, RabbitMQ</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <iconify-icon icon="mdi:code-braces" class="text-orange-500 text-sm"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white mb-0.5">Full Stack</div>
+                <div class="text-xs text-stone-500">React, TypeScript, Java</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#experience" class="inline-flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-400 transition-colors group">
+            See my work
+            <iconify-icon icon="mdi:arrow-right" class="group-hover:translate-x-1 transition-transform duration-300"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section Header -->
+      <div class="scroll-reveal text-center mb-16">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+          <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest">Experience</span>
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-gradient">Where I've Worked</h2>
+      </div>
+
+      <!-- Experience Cards -->
+      <div class="max-w-4xl mx-auto space-y-8">
+
+        <!-- Societe Generale -->
+        <div class="scroll-reveal experience-card pl-8">
+          <div class="dot"></div>
+          <div class="card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 md:p-10">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/20 flex items-center justify-center">
+                    <iconify-icon icon="mdi:bank" class="text-orange-500 text-lg"></iconify-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-medium text-white">Societe Generale</h3>
+                    <p class="text-sm text-stone-500">Global Solution Centre · Bengaluru</p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-xs font-semibold text-orange-400">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                  Current Role
+                </span>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <div class="text-sm font-medium text-white">Full Stack Developer</div>
+                <div class="text-xs text-stone-500 mt-0.5">Sept 2025 – Present</div>
+              </div>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Led end-to-end development of full-stack features, delivering scalable solutions from requirement analysis to production deployment.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Enhanced Screening Third Party Matching (STPM) system, reducing dependency on vendor filtering engines.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Built dynamic UI components using <span class="text-white font-medium">React</span> and <span class="text-white font-medium">TypeScript</span> for business workflows; developed backend services using <span class="text-white font-medium">Spring Boot</span>.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Reduced manual processing time by <span class="text-orange-400 font-medium">30%</span> by automating file handling and notification workflows.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Automated database versioning with <span class="text-white font-medium">Liquibase</span>, ensuring zero-downtime schema updates.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Improved system reliability with <span class="text-white font-medium">Cypress (E2E)</span> and <span class="text-white font-medium">JUnit</span> testing, reducing production defects.
+              </li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/5">
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Spring Boot</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">React</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">TypeScript</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Liquibase</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Cypress</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">JUnit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infosys -->
+        <div class="scroll-reveal experience-card pl-8">
+          <div class="dot"></div>
+          <div class="card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 md:p-10">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+                    <iconify-icon icon="mdi:office-building" class="text-blue-400 text-lg"></iconify-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-medium text-white">Infosys Limited</h3>
+                    <p class="text-sm text-stone-500">Client: Danske Bank · Bengaluru</p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-stone-400">
+                  3 years 4 months
+                </span>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <div class="text-sm font-medium text-white">Software Engineer</div>
+                <div class="text-xs text-stone-500 mt-0.5">June 2022 – Sept 2025</div>
+              </div>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Developed <span class="text-white font-medium">Spring Boot microservices</span> for a Consent Management System in the banking domain.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Built REST APIs with response times under <span class="text-orange-400 font-medium">400ms</span> during peak loads, adhering to bank regulations and security standards.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Implemented <span class="text-white font-medium">Kafka-based event-driven</span> pipelines and <span class="text-white font-medium">RabbitMQ</span> message broker for high-scalable, decoupled systems.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Improved API performance by <span class="text-orange-400 font-medium">25%</span> and reduced database load by <span class="text-orange-400 font-medium">50%</span> using caching and query optimisation.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Developed automated API testing using <span class="text-white font-medium">Rest Assured</span>, increasing coverage by <span class="text-orange-400 font-medium">80%</span>.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Published APIs via <span class="text-white font-medium">IBM API Connect</span>; utilized <span class="text-white font-medium">Azure DevOps</span>, Git, OpenShift, and CI/CD pipelines.
+              </li>
+              <li class="flex items-start gap-3 text-sm font-light text-stone-400 leading-relaxed">
+                <iconify-icon icon="mdi:chevron-right" class="text-orange-500 text-base mt-0.5 flex-shrink-0"></iconify-icon>
+                Leveraged AI tools (ChatGPT, GitHub Copilot) to enhance productivity and debugging workflows.
+              </li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/5">
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Spring Boot</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Kafka</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">RabbitMQ</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Rest Assured</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">IBM API Connect</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">Azure DevOps</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">OpenShift</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 text-[11px] font-medium text-stone-400">ReactJS</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section Header -->
+      <div class="scroll-reveal text-center mb-16">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+          <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest">Key Projects</span>
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-gradient mb-4">Featured Work</h2>
+        <p class="text-base font-light text-stone-500 max-w-xl mx-auto">Business-critical systems I've built and enhanced across banking and financial services.</p>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+        <!-- Project 1: STPM -->
+        <div class="scroll-reveal card-hover group bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div class="relative h-52 overflow-hidden">
+            <img src="https://picsum.photos/seed/stpm-screening-system/800/400.jpg" alt="STPM System" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/30 text-[10px] font-semibold text-orange-400 uppercase tracking-wider">Full Stack</span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-medium text-white mb-1">STPM System Enhancement</h3>
+              <p class="text-xs text-stone-400">Societe Generale</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-light text-stone-400 leading-relaxed mb-4">
+              Enhanced the Screening Third Party Matching system, reducing dependency on vendor filtering engines. Built dynamic React/TypeScript UI and Spring Boot backend services.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Spring Boot</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">React</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">TypeScript</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-orange-500">
+                <iconify-icon icon="mdi:trending-down" class="text-sm"></iconify-icon>
+                <span class="text-xs font-semibold">-30% Processing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Consent Management -->
+        <div class="scroll-reveal card-hover group bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div class="relative h-52 overflow-hidden">
+            <img src="https://picsum.photos/seed/consent-api-platform/800/400.jpg" alt="Consent Management" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-[10px] font-semibold text-blue-400 uppercase tracking-wider">Microservices</span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-medium text-white mb-1">Consent Management Platform</h3>
+              <p class="text-xs text-stone-400">Danske Bank · Infosys</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-light text-stone-400 leading-relaxed mb-4">
+              Built a centralized Consent Management Platform serving the entire lifecycle of consent. Event-driven architecture with Kafka and RabbitMQ for high scalability and decoupling.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Kafka</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">RabbitMQ</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Spring Boot</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-orange-500">
+                <iconify-icon icon="mdi:speedometer" class="text-sm"></iconify-icon>
+                <span class="text-xs font-semibold">&lt;400ms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: API Testing Suite -->
+        <div class="scroll-reveal card-hover group bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div class="relative h-52 overflow-hidden">
+            <img src="https://picsum.photos/seed/automated-testing-suite/800/400.jpg" alt="API Testing" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-[10px] font-semibold text-green-400 uppercase tracking-wider">Testing</span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-medium text-white mb-1">Automated API Test Suite</h3>
+              <p class="text-xs text-stone-400">Danske Bank · Infosys</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-light text-stone-400 leading-relaxed mb-4">
+              Developed comprehensive automated test suite using Rest Assured for functional and integration testing. Achieved 80% coverage increase and reduced production defects significantly.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Rest Assured</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">JUnit</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Cypress</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-orange-500">
+                <iconify-icon icon="mdi:check-decagram" class="text-sm"></iconify-icon>
+                <span class="text-xs font-semibold">+80% Coverage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: File Processing & Notifications -->
+        <div class="scroll-reveal card-hover group bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div class="relative h-52 overflow-hidden">
+            <img src="https://picsum.photos/seed/file-automation-system/800/400.jpg" alt="File Processing" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-[10px] font-semibold text-purple-400 uppercase tracking-wider">Automation</span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <h3 class="text-lg font-medium text-white mb-1">File Processing & Notification System</h3>
+              <p class="text-xs text-stone-400">Societe Generale</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-light text-stone-400 leading-relaxed mb-4">
+              Implemented automated file processing for importing/exporting structured data, email notification system triggered by system events, and Liquibase-based zero-downtime database versioning.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Liquibase</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Spring Boot</span>
+                <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-stone-500">Automation</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-orange-500">
+                <iconify-icon icon="mdi:timer-sand" class="text-sm"></iconify-icon>
+                <span class="text-xs font-semibold">Zero Downtime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section Header -->
+      <div class="scroll-reveal text-center mb-16">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+          <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest">Tech Stack</span>
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-gradient mb-4">Skills & Technologies</h2>
+        <p class="text-base font-light text-stone-500 max-w-xl mx-auto">Tools and technologies I use to build production-grade software.</p>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Languages -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+            <iconify-icon icon="mdi:code-tags" class="text-orange-500 text-xl"></iconify-icon>
+          </div>
+          <h3 class="text-base font-medium text-white mb-4">Languages</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Java (8/21)</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">TypeScript</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">JavaScript</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">SQL</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+            <iconify-icon icon="mdi:server" class="text-orange-500 text-xl"></iconify-icon>
+          </div>
+          <h3 class="text-base font-medium text-white mb-4">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Spring Boot</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Hibernate</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">JPA</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Microservices</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">REST APIs</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+            <iconify-icon icon="mdi:monitor-dashboard" class="text-orange-500 text-xl"></iconify-icon>
+          </div>
+          <h3 class="text-base font-medium text-white mb-4">Frontend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">React.js</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">HTML5</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">CSS</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Bootstrap</span>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+            <iconify-icon icon="mdi:database-outline" class="text-orange-500 text-xl"></iconify-icon>
+          </div>
+          <h3 class="text-base font-medium text-white mb-4">Databases</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">MySQL</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Cloud & DevOps -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+            <iconify-icon icon="mdi:cloud-cog-outline" class="text-orange-500 text-xl"></iconify-icon>
+          </div>
+          <h3 class="text-base font-medium text-white mb-4">Cloud & DevOps</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">AWS (EC2, S3, Lambda, RDS)</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Docker</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Kubernetes</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Terraform</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Git / GitHub</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">OpenShift</span>
+          </div>
+        </div>
+
+        <!-- Distributed Systems & More -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+            <iconify-icon icon="mdi:vector-connect" class="text-orange-500 text-xl"></iconify-icon>
+          </div>
+          <h3 class="text-base font-medium text-white mb-4">Distributed & More</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Apache Kafka</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">RabbitMQ</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">OAuth 2.0 / JWT</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">System Design</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">Design Patterns</span>
+            <span class="skill-tag px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-medium text-stone-400 cursor-default">ServiceNow</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Certifications -->
+      <div class="scroll-reveal max-w-3xl mx-auto mt-16">
+        <div class="text-center mb-8">
+          <h3 class="text-lg font-medium text-white mb-2">Certifications</h3>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="card-hover flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-5">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <iconify-icon icon="mdi:azure" class="text-blue-400 text-2xl"></iconify-icon>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-white">AZ-900</div>
+              <div class="text-xs text-stone-500">Microsoft Azure Fundamentals</div>
+            </div>
+          </div>
+          <div class="card-hover flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-5">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/5 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+              <iconify-icon icon="mdi:leaf-circle" class="text-green-400 text-2xl"></iconify-icon>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-white">Spring REST Professional</div>
+              <div class="text-xs text-stone-500">Infosys Certified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- Education Section -->
+  <section id="education" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section Header -->
+      <div class="scroll-reveal text-center mb-16">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+          <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest">Education</span>
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-gradient">Academic Background</h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-6">
+        <!-- BE -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/15 flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:school-outline" class="text-orange-500 text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium text-white mb-1">Bachelor of Engineering</h3>
+                <p class="text-sm text-stone-400 mb-2">Information Science and Engineering</p>
+                <p class="text-sm text-stone-500">Acharya Institute of Technology, Bengaluru</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <div class="text-sm font-medium text-white">2016 – 2020</div>
+              <div class="text-xs text-orange-400 font-semibold mt-1">CGPA: 7.85</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PUC -->
+        <div class="scroll-reveal card-hover bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:book-open-page-variant-outline" class="text-stone-400 text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium text-white mb-1">Pre-University Course (PUC)</h3>
+                <p class="text-sm text-stone-400 mb-2">Science</p>
+                <p class="text-sm text-stone-500">KLE Society's SCP PU College, Mahalingapur</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <div class="text-sm font-medium text-stone-400">Completed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="gradient-line max-w-7xl mx-auto"></div>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 md:py-32 relative">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 600px 300px at 50% 80%, rgba(249,115,22,0.06), transparent 70%);"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <!-- Section Header -->
+      <div class="scroll-reveal text-center mb-16">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+          <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest">Get in Touch</span>
+          <div class="w-8 h-[2px] bg-orange-500"></div>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-gradient mb-4">Let's Work Together</h2>
+        <p class="text-base font-light text-stone-500 max-w-xl mx-auto">I'm currently open to new opportunities. Whether you have a project or just want to connect, I'd love to hear from you.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+        <!-- Contact Info -->
+        <div class="md:col-span-2 space-y-4">
+          <a href="mailto:vinayakakvise@gmail.com" class="scroll-reveal card-hover flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 group">
+            <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+              <iconify-icon icon="mdi:email-outline" class="text-orange-500 text-lg"></iconify-icon>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs text-stone-500 mb-0.5">Email</div>
+              <div class="text-sm font-medium text-white truncate">vinayakakvise@gmail.com</div>
+            </div>
+          </a>
+
+          <a href="tel:+917829949093" class="scroll-reveal card-hover flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 group">
+            <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+              <iconify-icon icon="mdi:phone-outline" class="text-orange-500 text-lg"></iconify-icon>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs text-stone-500 mb-0.5">Phone</div>
+              <div class="text-sm font-medium text-white">+91-7829949093</div>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/vinayakakvise" target="_blank" rel="noopener" class="scroll-reveal card-hover flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 group">
+            <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+              <iconify-icon icon="mdi:linkedin" class="text-orange-500 text-lg"></iconify-icon>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs text-stone-500 mb-0.5">LinkedIn</div>
+              <div class="text-sm font-medium text-white truncate">/vinayakakvise</div>
+            </div>
+          </a>
+
+          <div class="scroll-reveal flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
+            <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+              <iconify-icon icon="mdi:map-marker-outline" class="text-orange-500 text-lg"></iconify-icon>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs text-stone-500 mb-0.5">Location</div>
+              <div class="text-sm font-medium text-white">Bengaluru, Karnataka, India</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="md:col-span-3 scroll-reveal">
+          <form id="contactForm" class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-xs font-medium text-stone-500 mb-2">Your Name</label>
+                <input type="text" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-stone-600 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-stone-500 mb-2">Your Email</label>
+                <input type="email" required placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-stone-600 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all" />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-xs font-medium text-stone-500 mb-2">Subject</label>
+              <input type="text" required placeholder="Project discussion" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-stone-600 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all" />
+            </div>
+            <div class="mb-6">
+              <label class="block text-xs font-medium text-stone-500 mb-2">Message</label>
+              <textarea required rows="4" placeholder="Tell me about your project..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-stone-600 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all resize-none"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full flex items-center justify-center gap-2 bg-white text-black text-sm font-semibold px-8 py-3.5 rounded-xl hover:bg-stone-200 transition-colors duration-300">
+              <iconify-icon icon="mdi:send" class="text-base"></iconify-icon>
+              Send Message
+            </button>
+            <div id="formMessage" class="hidden mt-4 text-center text-sm font-medium"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-white font-semibold text-xs">
+            VN
+          </div>
+          <span class="text-sm text-stone-500">© 2025 Vinayak Nimbaragi. All rights reserved.</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://www.linkedin.com/in/vinayakakvise" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+            <iconify-icon icon="mdi:linkedin" class="text-stone-400 text-base"></iconify-icon>
+          </a>
+          <a href="mailto:vinayakakvise@gmail.com" class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+            <iconify-icon icon="mdi:email-outline" class="text-stone-400 text-base"></iconify-icon>
+          </a>
+          <a href="tel:+917829949093" class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+            <iconify-icon icon="mdi:phone-outline" class="text-stone-400 text-base"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none" style="transition: opacity 0.3s, transform 0.3s;">
+    <iconify-icon icon="mdi:chevron-up" class="text-orange-400 text-xl"></iconify-icon>
+  </button>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    let menuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.setAttribute('icon', menuOpen ? 'mdi:close' : 'mdi:menu');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuOpen = false;
+        menuIcon.setAttribute('icon', 'mdi:menu');
+      });
+    });
+
+    // Scroll Reveal
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, index * 80);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    scrollRevealElements.forEach(el => revealObserver.observe(el));
+
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backToTop.style.opacity = '1';
+        backToTop.style.transform = 'translateY(0)';
+        backToTop.style.pointerEvents = 'auto';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.transform = 'translateY(16px)';
+        backToTop.style.pointerEvents = 'none';
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Active Nav Link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('text-white');
+        link.classList.add('text-stone-400');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.remove('text-stone-400');
+          link.classList.add('text-white');
+        }
+      });
+    });
+
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<iconify-icon icon="mdi:loading" class="text-base animate-spin"></iconify-icon> Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<iconify-icon icon="mdi:check" class="text-base"></iconify-icon> Sent!';
+        btn.classList.remove('bg-white', 'text-black', 'hover:bg-stone-200');
+        btn.classList.add('bg-green-500/20', 'text-green-400', 'border', 'border-green-500/30');
+
+        formMessage.classList.remove('hidden');
+        formMessage.classList.add('text-green-400');
+        formMessage.textContent = 'Thank you! I\'ll get back to you soon.';
+
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.disabled = false;
+          btn.classList.add('bg-white', 'text-black', 'hover:bg-stone-200');
+          btn.classList.remove('bg-green-500/20', 'text-green-400', 'border', 'border-green-500/30');
+          contactForm.reset();
+          formMessage.classList.add('hidden');
+        }, 3000);
+      }, 1500);
+    });
+
+    // Parallax on hero glow
+    document.addEventListener('mousemove', (e) => {
+      const heroGlow = document.querySelector('.hero-glow');
+      if (!heroGlow) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+      heroGlow.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+</body>
+</html>
